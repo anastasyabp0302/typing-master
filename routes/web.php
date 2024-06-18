@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TypingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,5 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', 'TypingController@index');
-Route::post('/submit', 'TypingController@submit');
+Route::get('/', [TypingController::class, 'index']);
+Route::post('/typing/submit', [TypingController::class, 'submit']);
+
