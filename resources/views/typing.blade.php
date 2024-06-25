@@ -2,122 +2,14 @@
 <html>
 <head>
     <title>Typing Master</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-
-        .container {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            text-align: center;
-            width: 600px;
-        }
-
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        #typing-input {
-            width: 100%;
-            height: 200px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            padding: 10px;
-            resize: none;
-            font-size: 16px;
-        }
-
-        .results {
-            margin-top: 20px;
-        }
-
-        .button {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .button:hover {
-            background-color: #45a049;
-        }
-
-        .language-select {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .language-select select {
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-
-        .language-select button {
-            background-color: #ccc;
-            border: none;
-            color: #333;
-            padding: 8px 16px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-
-        #results-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        #results-table th, #results-table td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
-
-        #results-table th {
-            background-color: #f0f0f0;
-        }
-    </style>
-    <nav class="navbar bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-      Bootstrap
-    </a>
-  </div>
-</nav>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         let startTime;
         let timerInterval;
         let countdown = 60; // Countdown time in seconds
-        const exampleText = "belajar mengetik 10 jari.";
 
         function startTimer() {
             startTime = new Date();
@@ -163,22 +55,36 @@
             document.getElementById('typing-input').setAttribute('disabled', 'disabled'); // Disable textarea
             document.getElementById('results').style.display = 'block'; // Show results section
             document.getElementById('example-text').style.display = 'none'; // Hide example text
-            const typingInput = document
+        }
 
         function changeLanguage(language) {
-           
             const exampleTextElement = document.getElementById('example-text');
             if (language === 'English') {
                 exampleTextElement.innerText = "Learn to type with 10 fingers.";
             } else if (language === 'Indonesian') {
                 exampleTextElement.innerText = "belajar mengetik 10 jari.";
-            } 
-            
+            }
         }
-    }
     </script>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Typing master</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="register">
+                        <img src="user.png" alt="Login" style="width: 30px; height: 30px;">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div class="container">
         <h1>Welcome to the Typing Master Page</h1>
         <div class="language-select">
@@ -188,7 +94,7 @@
             </select>
             <button onclick="changeLanguage(document.getElementById('language-select').value)">Change Language</button>
         </div>
-        <p>Example Text: <span id="example-text"><strong>{{ $exampleText }}</strong></span></p>
+        <p>Example Text: <span id="example-text"><strong>belajar mengetik 10 jari.</strong></span></p>
         <p>Time Taken: <span id="timer">0 seconds</span></p>
         <p>Countdown: <span id="countdown">60 seconds</span></p>
         <form action="/typing/submit" method="POST" onsubmit="submitForm()">
