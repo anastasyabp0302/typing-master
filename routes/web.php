@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TypingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
-
+use App\Http\Controllers\TypingTestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +29,9 @@ Route::post('/login', [App\Http\Controllers\AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 Route::get('/courses', [App\Http\Controllers\CourseController::class, 'showCoursePage']);
+
+Route::get('/typing-test', function () {
+    return view('typing-test');
+});
+
+Route::get('/typing-test', [TypingTestController::class, 'show']);
