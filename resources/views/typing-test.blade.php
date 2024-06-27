@@ -72,7 +72,7 @@
             Informasi telah
         </div>
         <div class="time-display">
-            <p>Time: <span id="time">10:00</span></p>
+            <p>Time: <span id="time">05:00</span></p>
         </div>
         <textarea class="typing-input" id="typingInput" placeholder="Start typing here..."></textarea>
         <button class="btn btn-primary btn-next" id="nextButton">Next</button>
@@ -95,7 +95,7 @@
             let modal = document.getElementById('myModal');
             let span = document.getElementsByClassName('close')[0];
             let nextButton = document.getElementById('nextButton');
-            let totalSeconds = 10 * 60; // 10:00 in seconds
+            let totalSeconds = 5 * 60; // 10:00 in seconds
             let timerStarted = false;
             let timerInterval;
 
@@ -106,7 +106,7 @@ Informasi telah`;
             const updateTime = () => {
                 let minutes = Math.floor(totalSeconds / 60);
                 let seconds = totalSeconds % 60;
-                if (seconds < 10) seconds = '0' + seconds;
+                if (seconds < 5) seconds = '0' + seconds;
                 timeElement.textContent = minutes + ':' + seconds;
                 if (totalSeconds > 0) {
                     totalSeconds--;
