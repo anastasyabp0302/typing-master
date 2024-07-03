@@ -50,9 +50,8 @@
                 <label for="password_confirmation" class="form-label">Confirm Password</label>
                 <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Register</button>
         </form>
-        <p class="mt-3">Already have an account? <a href="login">Login here</a></p>
+        <a href="/login" class="btn btn-danger">Register</a>
     </div>
 </body>
 </html>

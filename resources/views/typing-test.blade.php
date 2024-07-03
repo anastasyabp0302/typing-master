@@ -1,34 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Typing Master</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Test</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
+        body {
+            font-family: sans-serif;
+            background-color: #f2f2f2;
         }
+
+        .container {
+            margin-top: 20px;
+        }
+
         .typing-text {
             border: 1px solid #ddd;
             padding: 20px;
             font-size: 18px;
-            height: 200px;
+            min-height: 200px;
             overflow-y: auto;
             white-space: pre-wrap;
         }
+
         .time-display {
             font-size: 24px;
             text-align: center;
             margin-top: 20px;
         }
+
         .typing-input {
             margin-top: 20px;
             width: 100%;
-            height: 100px;
+            min-height: 100px;
         }
+
         .btn-next {
             margin-top: 20px;
         }
+
         .modal {
             display: none;
             position: fixed;
@@ -40,6 +51,7 @@
             overflow: auto;
             background-color: rgba(0,0,0,0.4);
         }
+
         .modal-content {
             background-color: #fefefe;
             margin: 15% auto;
@@ -49,12 +61,14 @@
             max-width: 500px;
             text-align: center;
         }
+
         .close {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
         }
+
         .close:hover,
         .close:focus {
             color: black;
@@ -65,49 +79,42 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center">Typing Master</h1>
-        <div class="typing-text" id="typingText">
-            ARSIP ELEKTRONIK
-            Perkembangan dan pertumbuhan informasi sejak beberapa tahun terakhir ini berjalan sangat cepat. Perubahan informasi tidak lagi terjadi dalam hitungan tahun, bulan, atau hari. Akan tetapi sekarang ini, perubahan informasi terjadi dalam hitungan jam, menit, atau bahkan detik. Setiap orang membutuhkan informasi untuk kepentingan pekerjaan pribadi maupun untuk kepentingan organisasi.
-            Informasi telah
-        </div>
+        <h1 class="text-center">Typing Test</h1>
+        <div class="typing-text" id="typingText"></div>
         <div class="time-display">
-            <p>Time: <span id="time">05:00</span></p>
+            <p>Waktu: <span id="time"></span></p>
         </div>
-        <textarea class="typing-input" id="typingInput" placeholder="Start typing here..."></textarea>
-        <button class="btn btn-primary btn-next" id="nextButton">Next</button>
-        <button class="btn btn-primary btn-back" id="nextButton">back<a href="courses">back</a></button>
+        <textarea class="typing-input" id="typingInput" placeholder="Mulai mengetik di sini..."></textarea>
+        <button class="btn btn-primary btn-next" id="nextButton">Lanjut</button>
     </div>
 
-    <!-- The Modal -->
+    <!-- Modal jika waktu habis -->
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p>Time's up! Please press "Next" to continue.</p>
+            <p>Waktu habis! Silakan tekan "Lanjut" untuk melanjutkan.</p>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            let timeElement = document.getElementById('time');
-            let typingInput = document.getElementById('typingInput');
-            let typingTextElement = document.getElementById('typingText');
-            let modal = document.getElementById('myModal');
-            let span = document.getElementsByClassName('close')[0];
-            let nextButton = document.getElementById('nextButton');
-            let totalSeconds = 5 * 60; // 10:00 in seconds
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('myModal');
+            const span = document.getElementsByClassName('close')[0];
+            const nextButton = document.getElementById('nextButton');
+            let totalSeconds = parseInt(new URLSearchParams(window.location.search).get('time')) * 60;
+            const targetText = decodeURIComponent(new URLSearchParams(window.location.search).get('text'));
+            const typingTextElement = document.getElementById('typingText');
+            const timeElement = document.getElementById('time');
+            const typingInput = document.getElementById('typingInput');
             let timerStarted = false;
             let timerInterval;
-
-            const targetText = `ARSIP ELEKTRONIK
-Perkembangan dan pertumbuhan informasi sejak beberapa tahun terakhir ini berjalan sangat cepat. Perubahan informasi tidak lagi terjadi dalam hitungan tahun, bulan, atau hari. Akan tetapi sekarang ini, perubahan informasi terjadi dalam hitungan jam, menit, atau bahkan detik. Setiap orang membutuhkan informasi untuk kepentingan pekerjaan pribadi maupun untuk kepentingan organisasi.
-Informasi telah`;
 
             const updateTime = () => {
                 let minutes = Math.floor(totalSeconds / 60);
                 let seconds = totalSeconds % 60;
-                if (seconds < 5) seconds = '0' + seconds;
-                timeElement.textContent = minutes + ':' + seconds;
+                if (seconds < 10) seconds = '0' + seconds;
+                timeElement.textContent = `${minutes}:${seconds}`;
                 if (totalSeconds > 0) {
                     totalSeconds--;
                 } else {
@@ -127,6 +134,16 @@ Informasi telah`;
                 modal.style.display = 'block';
             };
 
+            span.onclick = function() {
+                modal.style.display = 'none';
+            };
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            };
+
             const highlightText = () => {
                 const userInput = typingInput.value;
                 let highlightedText = '';
@@ -144,15 +161,21 @@ Informasi telah`;
                 typingTextElement.innerHTML = highlightedText.replace(/\n/g, '<br>');
             };
 
-            span.onclick = function() {
-                modal.style.display = 'none';
-            }
+            const calculateResults = () => {
+                const userInput = typingInput.value;
+                const wordsTyped = userInput.split(/\s+/).length;
+                const minutesTaken = (parseInt(new URLSearchParams(window.location.search).get('time')) * 60 - totalSeconds) / 60;
+                const grossSpeed = wordsTyped / minutesTaken;
+                const errors = userInput.split('').reduce((acc, char, idx) => acc + (char !== targetText[idx] ? 1 : 0), 0);
+                const accuracy = ((userInput.length - errors) / userInput.length) * 100;
+                const netSpeed = grossSpeed * (accuracy / 100);
 
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = 'none';
-                }
-            }
+                return {
+                    grossSpeed: grossSpeed.toFixed(2),
+                    accuracy: accuracy.toFixed(2),
+                    netSpeed: netSpeed.toFixed(2),
+                };
+            };
 
             typingInput.addEventListener('input', () => {
                 startTimer();
@@ -160,7 +183,8 @@ Informasi telah`;
             });
 
             nextButton.addEventListener('click', () => {
-                window.location.href = "results.html";
+                const results = calculateResults();
+                window.location.href = `results?grossSpeed=${results.grossSpeed}&accuracy=${results.accuracy}&netSpeed=${results.netSpeed}&timeUsed=${parseInt(new URLSearchParams(window.location.search).get('time'))}`;
             });
         });
     </script>

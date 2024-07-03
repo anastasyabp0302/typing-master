@@ -6,7 +6,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
+    <style>
+        .carousel-item {
+            height: 600px; /* Set height as needed */
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -36,14 +42,11 @@
                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="gambar1.jpeg" class="d-block w-100" alt="First slide">
+                <div class="carousel-item active" style="background-image: url('gambar1.jpeg');">
                 </div>
-                <div class="carousel-item">
-                    <img src="gambar2.jpeg" class="d-block w-100" alt="Second slide">
+                <div class="carousel-item" style="background-image: url('gambar2.jpeg');">
                 </div>
-                <div class="carousel-item">
-                    <img src="download (8).jpeg" class="d-block w-100" alt="Third slide">
+                <div class="carousel-item" style="background-image: url('download (8).jpeg');">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -55,5 +58,6 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
+    </div>
 </body>
 </html>

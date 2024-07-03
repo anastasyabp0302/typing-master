@@ -36,6 +36,7 @@
             background-color: #007bff;
             color: #fff;
         }
+        
     </style>
 </head>
 <body>
@@ -43,68 +44,44 @@
         <div class="left-section">
             <h1 class="mb-4">Typing Test</h1>
             <div class="test-section p-4 mb-4 bg-white rounded shadow-sm">
-                <h2>1. Test Text</h2>
-                <select class="form-select mb-3">
-                    <option value="custom">ARSHATRONIX.txt (custom)</option>
-                    <option value="aesop">Aesop's Fables</option>
-                    <option value="skills">Are Your Typing Skills Hurting Your Job Opportunities?</option>
-                    <option value="astronauts">Astronauts</option>
-                    <option value="behind">Behind the scene: Movie credits</option>
-                    <option value="dna">DNA Research - the Human Genome Project</option>
-                    <option value="wpm">Does WPM Really Matter in the Corporate World?</option>
-                    <option value="fairy">Fairy Tales/The Emperor's New Clothes (adapted)</option>
-                    <option value="history">History of Photography</option>
+                <h2>1. Pilih Teks</h2>
+                <select id="textSelect" class="form-select mb-3">
+                    <option value="Tanaman kopi adalah semak cemara dengan dedaunan yang lebat. Coffea arabica membentuk tunas utama tegak dari mana cabang-cabangnya bercabang secara horizontal selama beberapa tingkat">Tumbuhan</option>
+                    <option value="Hutan hujan tropika atau sering juga ditulis sebagai hutan hujan tropis adalah bioma berupa hutan yang selalu basah atau lembap, yang dapat ditemui di wilayah sekitar khatulistiwa; yakni kurang lebih pada lintang 0°–10° ke utara dan ke selatan garis khatulistiwa">Hutan Hujan Tropis</option>
+                    <option value="Tomat atau rangam adalah tumbuhan dari keluarga Solanaceae, tumbuhan asli Amerika Tengah dan Selatan, dari Meksiko sampai Peru. Tomat merupakan tumbuhan siklus hidup singkat, dapat tumbuh setinggi 1 sampai 3 meter.">Tanaman Tomat</option>
+                    <option value="Kakao merupakan tumbuhan tahunan (perennial) berbentuk pohon, di alam dapat mencapai ketinggian 10m. Meskipun demikian, dalam budi daya tanaman ini tingginya dibuat tidak lebih dari 5m, tetapi dengan tajuk menyamping yang meluas. Hal ini dilakukan untuk memperbanyak cabang produktif.">Kakao</option>
                 </select>
-                <h2>2. Duration</h2>
-                <select class="form-select mb-3">
-                    <option value="10">10 min.</option>
-                    <option value="15">15 min.</option>
-                    <option value="20">20 min.</option>
+
+                <h2>2. Pilih Durasi</h2>
+                <select id="timeSelect" class="form-select mb-3">
+                    <option value="5">5 menit</option>
+                    <option value="10">10 menit</option>
+                    <option value="15">15 menit</option>
                 </select>
-                <h2>3.</h2>
-                <button class="btn btn-primary">Start test</button>
-                <a href="typing-test" class="btn btn-link">start</a>
-            </div>
-            <div class="completed-tests p-4 bg-white rounded shadow-sm">
-                <h2>Completed Tests</h2>
-                <textarea class="form-control mb-3" rows="6"></textarea>
-                <button class="btn btn-primary">View & Print Results</button>
-                <button class="btn btn-secondary">View & Print Certificate</button>
+
+                <h2>3. Mulai Tes</h2>
+                <button onclick="startTypingTest()" class="btn btn-primary">Mulai</button>
             </div>
         </div>
         <div class="right-section">
-            <a href="/">close</a>
-            <button class="close-button">Close</button>
+            <a href="/" class="btn btn-danger">Tutup</a>
             <div class="mt-4">
-                <div class="menu-item mb-2">
-                    <a href="#">STUDYING</a>
-                </div>
-                <div class="menu-item mb-2">
-                    <a href="#">TYPING METER</a>
-                </div>
-                <div class="menu-item mb-2">
-                    <a href="#">CUSTOM REVIEW</a>
-                </div>
                 <div class="menu-item mb-2 active">
-                    <a href="#">TYPING TEST</a>
-                </div>
-                <div class="menu-item mb-2">
-                    <a href="#">GAMES</a>
-                </div>
-                <div class="menu-item mb-2">
-                    <a href="#">STATISTICS</a>
-                </div>
-                <div class="menu-item mb-2">
-                    <a href="#">SETTINGS</a>
-                </div>
-                <div class="menu-item mb-2">
-                    <a href="#">ABOUT</a>
+                    <a href="#">TES KETIK</a>
                 </div>
             </div>
-            <img src="typing-master-logo.png" alt="TypingMaster Logo" width="100" class="mt-4">
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function startTypingTest() {
+            const selectedText = document.getElementById('textSelect').value;
+            const selectedTime = document.getElementById('timeSelect').value;
+
+            // Redirect to typing test page with chosen text and time
+            window.location.href = `/typing-test?text=${encodeURIComponent(selectedText)}&time=${selectedTime}`;
+        }
+    </script>
 </body>
 </html>

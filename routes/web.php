@@ -36,3 +36,7 @@ Route::get('/typing-test', function () {
 });
 
 Route::get('/typing-test', [TypingTestController::class, 'show']);
+
+Route::get('/results', function () {
+    return view('results');
+});

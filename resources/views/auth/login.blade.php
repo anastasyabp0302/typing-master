@@ -46,9 +46,7 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Enter</button>
-            <a href="courses" class="d-block mt-3">Enter without logging in</a>
-            <a href="register" class="d-block mt-3">enter create</a>
+            <a href="/courses" class="btn btn-danger">Enter</a>
         </form>
     </div>
 </body>
